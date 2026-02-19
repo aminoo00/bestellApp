@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BestellApp</title>
+    <link rel="shortcut icon" type="image/x-icon" href="assets/icons/fav.png">
+    <link rel="stylesheet" href="styles/standard.css">
+    <link rel="stylesheet" href="styles/assets.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+
+    <header class="main_header_1">
+        <div class="logo_container_1">
+            <img src="assets/img/Logo 02.png" alt="Logo" class="logo_img_1">
+        </div>
+        <div class="menu_icon_1">
+            <img src="assets/icons/menu.png" alt="Menu" class="menu_icon_img_1">
+        </div>
+    </header>
+
+
+    <div class="hero_banner_div_1">
+        <img src="assets/img/main.jpg" alt="Delicious Food" class="hero_img_1">
+    </div>
+
+
+    <div class="restaurant_info_container_1">
+        <div class="restaurant_avatar_logo_1">
+            <img src="assets/img/logo.png" alt="BurgerHouse Logo">
+        </div>
+        <div class="restaurant_text_info_1">
+            <h1>BurgerHouse</h1>
+            <div class="rating_stars_1">
+                <img src="assets/icons/star.png" alt="Star" class="rating_star_img"> <span>4.7</span> <span
+                    class="review_count">(147)</span>
+            </div>
+            <p class="restaurant_slogan_1">The best of Burgers, Pizza, and Greens, all in one great place.</p>
+        </div>
+    </div>
+
+
+    <div class="category_slider_container_1">
+        <a href="#burgers" class="category_link_1">
+            <img src="assets/img/mainburger.png" alt="Burger"> Burgers
+        </a>
+        <a href="#pizzas" class="category_link_1">
+            <img src="assets/img/mainpizza.png" alt="Pizza"> Pizzas
+        </a>
+        <a href="#salads" class="category_link_1">
+            <img src="assets/img/mainsalad.png" alt="Salad"> Salads
+        </a>
+    </div>
+
+
+    <main class="main_content_area_1">
+
+
+        <section class="burger_section_1" id="burgers">
+            <div class="section_heaading_1">
+                <h2><img src="assets/img/mainburger.png" alt="Burger Icon"> Burgers & Sandwiches</h2>
+            </div>
+            <div class="burgers_list_container_1" id="burger_content"></div>
+        </section>
+
+
+        <section class="pizza_section_1" id="pizzas">
+            <div class="section_heading_pizza_1">
+                <h2><img src="assets/img/mainpizza.png" alt="Pizza Icon"> Pizza (30cm)</h2>
+            </div>
+            <div class="pizza_list_inner_1" id="pizza_content"></div>
+        </section>
+
+        <div class="spacer_big"></div>
+
+
+        <section class="salad_section_1" id="salads">
+            <div class="section_heading_salad_1">
+                <h2><img src="assets/img/mainsalad.png" alt="Salad Icon"> Salad</h2>
+            </div>
+            <div class="salad_list_container_1" id="salad_content"></div>
+        </section>
+
+
+
+        <div class="basket_container_1" id="basket_container_1">
+            <button class="close_basket_btn" onclick="closeBasket()">✕</button>
+            <h3>Warenkorb</h3>
+
+            <div id="basket_content"></div>
+
+            <div class="basket_total_section">
+                <div class="cost_row total_row">
+                    <span>Gesamt:</span>
+                    <span id="total_sum">0,00 €</span>
+                </div>
+            </div>
+
+            <button class="checkout_btn" id="checkout_btn" onclick="placeOrder()">Bezahlen</button>
+        </div>
+
+        <button class="mobile_basket_btn" onclick="toggleBasket()">
+            Warenkorb
+        </button>
+
+    </main>
+
+
+    <footer class="main_footer">
+        <div class="footer_content_row">
+            <span class="footer_copy">© 2025 BurgerHouse</span>
+            <div class="footer_nav">
+                <a href="#">Imprint</a>
+                <a href="#">Cookie Preferences</a>
+            </div>
+        </div>
+    </footer>
+
+
+    <script src="scripts/db.js"></script>
+    <script src="scripts/templates.js"></script>
+    <script src="script.js"></script>
+</body>
+
+</html>

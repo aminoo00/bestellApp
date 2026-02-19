@@ -1,0 +1,10 @@
+:root {
+    --main-orange: #E76C1F;
+    --text-dark: #333333;
+    --white: #FFFFFF;
+}
+
+.icon_small {
+    width: 24.5px;
+    height: 24.5px;
+}
