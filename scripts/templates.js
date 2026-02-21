@@ -1,9 +1,6 @@
 function getBasketItem(index) {
     // how to fix decimals here: https://www.w3schools.com/jsref/jsref_tofixed.asp
     let totalPrice = (basket[index].price * basket[index].amount).toFixed(2);
-
-    // replace dot with comma for german style
-    // https://www.w3schools.com/jsref/jsref_replace.asp
     totalPrice = totalPrice.replace('.', ',');
 
     return '<div class="basket_card_item">' +
@@ -52,5 +49,20 @@ function getDishHTML(dish, index) {
         '<button class="add_btn_1" onclick="addToBasket(\'' + dish.name + '\', ' + dish.preis + ')">+</button>' +
         '</div>' +
         '</div>' +
+        '</div>';
+}
+
+function getEmptyBasketTemplate() {
+    return '<div class="basket_empty_state">' +
+        '<img src="assets/icons/shopping_cart.png" alt="Empty" style="opacity: 0.3; height: 40px; margin-bottom: 15px;">' +
+        '<h3>Wähle dein Festmahl</h3>' +
+        '<p>Stöbere durch unsere Speisekarte, stelle dein Menü zusammen und genieße deine Mahlzeit.</p>' +
+        '</div>';
+}
+
+function getSuccessBasketTemplate() {
+    return '<div class="basket_success_state">' +
+        '<h3>Vielen Dank für deine Bestellung!</h3>' +
+        '<p>Dein Essen wird schon bald frisch und heiß zu dir geliefert.</p>' +
         '</div>';
 }
