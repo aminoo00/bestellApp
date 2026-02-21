@@ -1,42 +1,21 @@
-function getBasketItem(index) {
-    // how to fix decimals here: https://www.w3schools.com/jsref/jsref_tofixed.asp
-    let totalPrice = (basket[index].price * basket[index].amount).toFixed(2);
-    totalPrice = totalPrice.replace('.', ',');
-
+function getBasketItem(index, itemName, itemAmount, totalPriceFormatted) {
     return '<div class="basket_card_item">' +
         '<div class="basket_info_top">' +
-        '<span class="basket_name">' + basket[index].name + '</span>' +
+        '<span class="basket_name">' + itemName + '</span>' +
         '</div>' +
         '<div class="basket_controls">' +
         '<div class="amount_controls">' +
         '<button class="control_btn" onclick="removeAmount(' + index + ')">-</button>' +
-        '<span class="amount_display">' + basket[index].amount + '</span>' +
+        '<span class="amount_display">' + itemAmount + '</span>' +
         '<button class="control_btn" onclick="addAmount(' + index + ')">+</button>' +
         '</div>' +
-        '<span class="basket_price_item">' + totalPrice + '€</span>' +
+        '<span class="basket_price_item">' + totalPriceFormatted + '€</span>' +
         '<button class="delete_icon_btn_text" onclick="deleteItem(' + index + ')"><img src="assets/icons/delete.png" alt="Delete" class="delete_icon_img"></button>' +
         '</div>' +
         '</div>';
 }
 
-function getDishHTML(dish, index) {
-    let priceFormatted = dish.preis.toFixed(2).replace('.', ',') + '€';
-    let myClass = '';
-
-    if (index == 0) { myClass = 'burger_card_1'; }
-    if (index == 1) { myClass = 'burger_card_2'; }
-    if (index == 2) { myClass = 'burger_card_3'; }
-    if (index == 3) { myClass = 'burger_card_4'; }
-
-    if (index == 4) { myClass = 'pizza_card_1'; }
-    if (index == 5) { myClass = 'pizza_card_2'; }
-    if (index == 6) { myClass = 'pizza_card_3'; }
-    if (index == 7) { myClass = 'salad_card_1'; }
-    if (index == 8) { myClass = 'salad_card_2'; }
-    if (index == 9) { myClass = 'salad_card_3'; }
-
-    if (myClass == '') { myClass = 'burger_card_1'; }
-
+function getDishHTML(dish, myClass, priceFormatted) {
     return '<div class="' + myClass + '">' +
         '<div class="burger_img_div_1">' +
         '<img src="' + dish.img + '" alt="' + dish.name + '" class="food_img_1">' +

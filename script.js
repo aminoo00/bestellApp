@@ -2,7 +2,6 @@ var basket = [];
 let summe = 0;
 
 function init() {
-    console.log('init start');
     renderMenu();
     renderBasket();
 }
@@ -21,11 +20,30 @@ function renderMenu() {
 
 function fillMenuCategories(burgerRef, pizzaRef, saladRef) {
     for (let i = 0; i < dishes.length; i++) {
-        let card = getDishHTML(dishes[i], i);
+        let myClass = getCardClass(i);
+        let priceFormatted = dishes[i].preis.toFixed(2).replace('.', ',') + '€';
+        let card = getDishHTML(dishes[i], myClass, priceFormatted);
+
         if (dishes[i].category == 'burger') burgerRef.innerHTML += card;
         if (dishes[i].category == 'pizza') pizzaRef.innerHTML += card;
         if (dishes[i].category == 'salad') saladRef.innerHTML += card;
     }
+}
+
+function getCardClass(index) {
+    let myClass = '';
+    if (index == 0) { myClass = 'burger_card_1'; }
+    if (index == 1) { myClass = 'burger_card_2'; }
+    if (index == 2) { myClass = 'burger_card_3'; }
+    if (index == 3) { myClass = 'burger_card_4'; }
+    if (index == 4) { myClass = 'pizza_card_1'; }
+    if (index == 5) { myClass = 'pizza_card_2'; }
+    if (index == 6) { myClass = 'pizza_card_3'; }
+    if (index == 7) { myClass = 'salad_card_1'; }
+    if (index == 8) { myClass = 'salad_card_2'; }
+    if (index == 9) { myClass = 'salad_card_3'; }
+    if (myClass == '') { myClass = 'burger_card_1'; }
+    return myClass;
 }
 
 function addToBasket(name, price) {
@@ -58,6 +76,7 @@ function renderBasket() {
 
     if (basket.length == 0) {
         showEmptyBasket(contentRef);
+        updateMobileCounter(0);
         return;
     }
 
@@ -85,9 +104,28 @@ function showFullBasket(contentRef) {
 }
 
 function renderBasketItems(contentRef) {
+    let totalItems = 0;
+
     for (let i = 0; i < basket.length; i++) {
-        contentRef.innerHTML += getBasketItem(i);
+        let totalPrice = (basket[i].price * basket[i].amount).toFixed(2);
+        let totalPriceFormatted = totalPrice.replace('.', ',');
+        contentRef.innerHTML += getBasketItem(i, basket[i].name, basket[i].amount, totalPriceFormatted);
         summe = summe + (basket[i].price * basket[i].amount);
+        totalItems = totalItems + basket[i].amount;
+    }
+
+    updateMobileCounter(totalItems);
+}
+
+function updateMobileCounter(count) {
+    let counterSpan = document.getElementById('mobile_counter');
+    if (counterSpan) {
+        if (count > 0) {
+            counterSpan.innerHTML = count;
+            counterSpan.classList.remove('d_none');
+        } else {
+            counterSpan.classList.add('d_none');
+        }
     }
 }
 
@@ -110,6 +148,7 @@ function placeOrder() {
     if (checkoutBtn) checkoutBtn.style.display = 'none';
 
     contentRef.innerHTML = getSuccessBasketTemplate();
+    updateMobileCounter(0);
 }
 
 function deleteItem(index) {
@@ -131,13 +170,12 @@ function addAmount(index) {
     renderBasket();
 }
 
-
-// toggle class for mobile menu
-// https://www.w3schools.com/jsref/prop_element_classlist.asp
 function toggleBasket() {
     let basketContainer = document.getElementById('basket_container_1');
     let mobileBtn = document.querySelector('.mobile_basket_btn');
+
     basketContainer.classList.toggle('show_basket');
+    document.body.classList.toggle('no_scroll');
 
     if (basketContainer.classList.contains('show_basket')) {
         if (mobileBtn) mobileBtn.classList.add('d_none');
@@ -149,7 +187,10 @@ function toggleBasket() {
 function closeBasket() {
     let basketContainer = document.getElementById('basket_container_1');
     let mobileBtn = document.querySelector('.mobile_basket_btn');
+
     basketContainer.classList.remove('show_basket');
+    document.body.classList.remove('no_scroll');
+
     if (mobileBtn) mobileBtn.classList.remove('d_none');
 }
 
